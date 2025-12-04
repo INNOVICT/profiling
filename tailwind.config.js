@@ -10,10 +10,10 @@ export default {
         './resources/js/**/*.jsx',
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
-    "./resources/**/*.jsx",
-    "./resources/**/*.vue",
-    "./resources/**/*.ts",
-    "./resources/**/*.tsx",
+        "./resources/**/*.jsx",
+        "./resources/**/*.vue",
+        "./resources/**/*.ts",
+        "./resources/**/*.tsx",
     ],
 
     theme: {
