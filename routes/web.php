@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,14 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/auth/redirect", function(){
-    return Socialite::driver('google')->redirect();
-});
+Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProvider']);
 
-Route::get("/auth/callback", function(){
-    $user = Socialite::driver('github')->user();
-
-    return $user;
-});
+Route::get("/auth/google/callback", [SocialiteController::class, 'handleProviderCallback']);
 
 require __DIR__.'/auth.php';
