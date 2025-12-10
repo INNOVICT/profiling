@@ -33,7 +33,7 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'user_id' => 'required|users',
+            'user_id' => 'required|exists:users,id',
             'nama_prestasi' => 'required|string|min:6',
             'tanggal' => 'required|date',
         ]);
@@ -41,14 +41,18 @@ class PrestasiController extends Controller
         $prestasi = Prestasi::create($validate);
 
         return redirect()->route('prestasi.index')->with('success', 'Prestasi berhasil ditambahkan');
-            }
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(Prestasi $prestasi)
     {
-        //
+        $prestasi = Prestasi::find($prestasi->id)->get();
+        
+        return Inertia::render('Prestasi/Show', [
+            'prestasi' => $prestasi,
+        ]);
     }
 
     /**
@@ -56,7 +60,11 @@ class PrestasiController extends Controller
      */
     public function edit(Prestasi $prestasi)
     {
-        //
+        $prestasi = Prestasi::find($prestasi->id)->get();
+        
+        return Inertia::render('Prestasi/Edit', [
+            'prestasi' => $prestasi,
+        ]);
     }
 
     /**
@@ -64,7 +72,15 @@ class PrestasiController extends Controller
      */
     public function update(Request $request, Prestasi $prestasi)
     {
-        //
+        $validate = $request->validate([
+            'user_id' => 'nullable|exists:users,id',
+            'nama_prestasi' => 'nullable|string|min:6',
+            'tanggal' => 'nullable|date',
+        ]);
+
+        $prestasi->update($validate);
+
+        return redirect()->route('prestasi.index')->with('success', 'Prestasi berhasil diupdate');
     }
 
     /**
@@ -72,6 +88,7 @@ class PrestasiController extends Controller
      */
     public function destroy(Prestasi $prestasi)
     {
-        //
+        $prestasi->delete();
+        return redirect()->route('prestasi.index')->with('success', 'Prestasi berhasil dihapus');
     }
 }
