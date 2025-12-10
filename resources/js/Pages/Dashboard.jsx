@@ -1,26 +1,29 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import Layout from "@/Components/Layout";
+import { Activity, icons } from "lucide-react";
+const summaryData = [
+    { title: "Total Revenue", icon: Activity, value: "200000" },
+    { title: "Total Revenue", icon: Activity, value: "200000" },
+    { title: "Total Revenue", icon: Activity, value: "200000" },
+    { title: "Total Revenue", icon: Activity, value: "200000" },
+];
 
-export default function Dashboard() {
+import SummaryCard from "@/Components/SummaryCard";
+export default function Page() {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
-
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
-                </div>
+        <Layout>
+            <div className="flex item-end justify-between mb-7">
+                <h1 className="3xl font-bold">Dashboard</h1>
             </div>
-        </AuthenticatedLayout>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {summaryData.map((item, key) => (
+                    <SummaryCard
+                        key={key}
+                        title={item.title}
+                        Icon={item.icon}
+                        value={item.value}
+                    />
+                ))}
+            </div>
+        </Layout>
     );
 }

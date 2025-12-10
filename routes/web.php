@@ -16,7 +16,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get("/test", function(){
+Route::get("/test", function () {
     return Inertia::render('Home');
 });
 
@@ -30,8 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProvider']);
+Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProvider'])
+    ->name('auth.google.redirect');
 
-Route::get("/auth/google/callback", [SocialiteController::class, 'handleProviderCallback']);
+Route::get("/auth/google/callback", [SocialiteController::class, 'handleProviderCallback'])
+    ->name('auth.google.callback');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
