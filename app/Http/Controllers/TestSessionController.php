@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TestSession;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TestSessionController extends Controller
 {
@@ -12,7 +13,7 @@ class TestSessionController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('TestSession/Index');
     }
 
     /**
@@ -20,7 +21,8 @@ class TestSessionController extends Controller
      */
     public function create()
     {
-        //
+        $testSession = new TestSession();
+        return Inertia::render('TestSession/Create', ['testSession' => $testSession]);
     }
 
     /**
@@ -28,7 +30,15 @@ class TestSessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'user_id' => "required|exists:users, id",
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'progress' => 'required|string|max:255'
+        ]);
+
+        $testSession = TestSession::create($request->all());
+        return redirect()->route('test-session.index')->with("success", "Test session created successfully");
     }
 
     /**
@@ -36,7 +46,7 @@ class TestSessionController extends Controller
      */
     public function show(TestSession $testSession)
     {
-        //
+        return Inertia::render('TestSession/Show', ['testSession' => $testSession]);
     }
 
     /**
@@ -44,7 +54,7 @@ class TestSessionController extends Controller
      */
     public function edit(TestSession $testSession)
     {
-        //
+        return Inertia::render('TestSession/Edit', ['testSession' => $testSession]);
     }
 
     /**
@@ -52,7 +62,15 @@ class TestSessionController extends Controller
      */
     public function update(Request $request, TestSession $testSession)
     {
-        //
+        $validate = $request->validate([
+            'user_id' => "nullable|exists:users, id",
+            'start' => 'nullable|date',
+            'end' => 'nullable|date',
+            'progress' => 'nullable|string|max:255'
+        ]);
+
+        $testSession->update($request->all());
+        return redirect()->route('test-session.index')->with("success", "Test session updated successfully");
     }
 
     /**
@@ -60,6 +78,7 @@ class TestSessionController extends Controller
      */
     public function destroy(TestSession $testSession)
     {
-        //
+        $testSession->delete();
+        return redirect()->route('test-session.index')->with("success", "Test session deleted successfully");
     }
 }
