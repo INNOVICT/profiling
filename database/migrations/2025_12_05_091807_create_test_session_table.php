@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('test_session', function (Blueprint $table) {
-            $table->uuid();
-            $table->foreignUuid("user_id")->constrained('users')->cascadeOnDelete();
+            $table->id();
+            $table->foreignId("user_id")->constrained('users')->cascadeOnDelete();
             $table->date('start');
             $table->date('end');
             $table->enum("progress", ['progress', 'completed']);
