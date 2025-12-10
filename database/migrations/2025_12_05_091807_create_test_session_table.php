@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('test_session', function (Blueprint $table) {
             $table->uuid();
             $table->foreignUuid("user_id")->constrained('users')->cascadeOnDelete();
-            $table->datetimes('start');
-            $table->datetimes('end');
+            $table->date('start');
+            $table->date('end');
             $table->enum("progress", ['progress', 'completed']);
             $table->timestamps();
         });

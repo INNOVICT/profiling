@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid();
             $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('nama_prestasi');
-            $table->datetimes('tanggal');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
