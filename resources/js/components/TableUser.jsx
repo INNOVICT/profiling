@@ -247,11 +247,13 @@ export const columns = [
 ];
 
 // 3. KOMPONEN UTAMA
-const TableUser = ({ users = dummyData }) => {
+const TableUser = ({ user = dummyData }) => {
     const [sorting, setSorting] = React.useState([]);
     const [columnFilters, setColumnFilters] = React.useState([]);
     const [columnVisibility, setColumnVisibility] = React.useState({});
     const [rowSelection, setRowSelection] = React.useState({});
+
+    const [users, setUsers] = React.useState({...user, role: 'Not Configured Yet'})
 
     const table = useReactTable({
         data: users,
@@ -338,10 +340,10 @@ const TableUser = ({ users = dummyData }) => {
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
-                                                  header.column.columnDef
-                                                      .header,
-                                                  header.getContext()
-                                              )}
+                                                header.column.columnDef
+                                                    .header,
+                                                header.getContext()
+                                            )}
                                     </TableHead>
                                 ))}
                             </TableRow>

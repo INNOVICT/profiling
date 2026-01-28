@@ -4,6 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property-read \App\Models\Option|null $options
+ * @property-read \App\Models\Question|null $questions
+ * @property-read \App\Models\TestSession|null $testSession
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Answer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Answer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Answer query()
+ * @mixin \Eloquent
+ */
 class Answer extends Model
 {
     //

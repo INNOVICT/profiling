@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "@/components/Layout";
-
 import TableUser from "@/components/TableUser";
-const index = () => {
+
+const index = ({users}) => {
+
+    useEffect(() => {
+        console.log({users});
+    }, [])
+
     return (
         <Layout>
-            <TableUser />
+            <TableUser
+                user={users}
+            />
+            <p></p>
         </Layout>
     );
 };

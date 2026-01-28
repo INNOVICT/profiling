@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,13 +24,9 @@ Route::get("/home", function () {
 
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/users', function () {
-    return Inertia::render('Admin/Users/index');
-})->middleware(['auth', 'verified'])->name('usersdata');
+Route::get('/users', [UserController::class, 'AllUser'])->middleware(['auth', 'verified'])->name('usersdata');
 
 
 
@@ -51,7 +49,11 @@ Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProv
 
 Route::get("/auth/google/callback", [SocialiteController::class, 'handleProviderCallback'])
     ->name('auth.google.callback');
-    
+
 Route::post("/auth/logout", [SocialiteController::class, 'logout'])->name('auth.google.logout');
+
+Route::get("/error", function(){
+    return Inertia::render('Error/index');
+})->name('error');
 
 require __DIR__ . '/auth.php';
