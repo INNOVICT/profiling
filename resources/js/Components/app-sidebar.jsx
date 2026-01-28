@@ -24,6 +24,7 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar";
 import { usePage } from "@inertiajs/react";
+import { LayoutDashboardIcon, User2Icon } from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -51,108 +52,108 @@ const data = {
     ],
     navMain: [
         {
-            title: "Playground",
-            url: "#",
-            icon: SquareTerminal,
+            title: "Dashboard",
+            url: "dashboard",
+            icon: LayoutDashboardIcon,
             isActive: true,
-            items: [
-                {
-                    title: "History",
-                    url: "#",
-                },
-                {
-                    title: "Starred",
-                    url: "#",
-                },
-                {
-                    title: "Settings",
-                    url: "#",
-                },
-            ],
+            // items: [
+            //     {
+            //         title: "History",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Starred",
+            //         url: "#",
+            //     },
+            //     {
+            //         title: "Settings",
+            //         url: "#",
+            //     },
+            // ],
         },
         {
-            title: "Models",
+            title: "Users",
             url: "#",
-            icon: Bot,
+            icon: User2Icon,
             items: [
                 {
-                    title: "Genesis",
-                    url: "#",
+                    title: "All Users",
+                    url: "usersdata",
                 },
-                {
-                    title: "Explorer",
-                    url: "#",
-                },
-                {
-                    title: "Quantum",
-                    url: "#",
-                },
+                // {
+                //     title: "Explorer",
+                //     url: "#",
+                // },
+                // {
+                //     title: "Quantum",
+                //     url: "#",
+                // },
             ],
         },
-        {
-            title: "Documentation",
-            url: "#",
-            icon: BookOpen,
-            items: [
-                {
-                    title: "Introduction",
-                    url: "#",
-                },
-                {
-                    title: "Get Started",
-                    url: "#",
-                },
-                {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Settings",
-            url: "#",
-            icon: Settings2,
-            items: [
-                {
-                    title: "General",
-                    url: "#",
-                },
-                {
-                    title: "Team",
-                    url: "#",
-                },
-                {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
-                },
-            ],
-        },
+        // {
+        //     title: "Role & Permision",
+        //     url: "#",
+        //     icon: BookOpen,
+        //     items: [
+        //         {
+        //             title: "Introduction",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Get Started",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Tutorials",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Changelog",
+        //             url: "#",
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: "Settings",
+        //     url: "#",
+        //     icon: Settings2,
+        //     items: [
+        //         {
+        //             title: "General",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Team",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Billing",
+        //             url: "#",
+        //         },
+        //         {
+        //             title: "Limits",
+        //             url: "#",
+        //         },
+        //     ],
+        // },
     ],
-    projects: [
-        {
-            name: "Design Engineering",
-            url: "#",
-            icon: Frame,
-        },
-        {
-            name: "Sales & Marketing",
-            url: "#",
-            icon: PieChart,
-        },
-        {
-            name: "Travel",
-            url: "#",
-            icon: Map,
-        },
-    ],
+    // projects: [
+    //     {
+    //         name: "Design Engineering",
+    //         url: "#",
+    //         icon: Frame,
+    //     },
+    //     {
+    //         name: "Sales & Marketing",
+    //         url: "#",
+    //         icon: PieChart,
+    //     },
+    //     {
+    //         name: "Travel",
+    //         url: "#",
+    //         icon: Map,
+    //     },
+    // ],
 };
 
 export function AppSidebar({ ...props }) {
@@ -174,7 +175,7 @@ export function AppSidebar({ ...props }) {
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />
-                <NavProjects projects={data.projects} />
+                {/* <NavProjects projects={data.projects} /> */}
             </SidebarContent>
             <SidebarFooter>
                 <NavUser isNavbar={false} />

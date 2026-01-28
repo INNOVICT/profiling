@@ -7,6 +7,7 @@ import {
     CreditCard,
     LogOut,
     Sparkles,
+    UserIcon,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,7 +26,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
-import { usePage } from "@inertiajs/react";
+import { usePage, Link } from "@inertiajs/react";
 export function NavUser({ isNavbar }) {
     const { isMobile } = useSidebar();
 
@@ -71,7 +72,7 @@ export function NavUser({ isNavbar }) {
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg bg-white"
                         side={isMobile || isNavbar ? "bottom" : "right"}
                         align="end"
                         sideOffset={4}
@@ -99,6 +100,13 @@ export function NavUser({ isNavbar }) {
                                 </div>
                             </DropdownMenuLabel>
                         )}
+                        <DropdownMenuItem asChild>
+                            {/* Link Inertia yang merender dirinya sebagai item menu */}
+                            <Link href={route("profiles")}>
+                                <UserIcon className="mr-2 h-4 w-4" />
+                                <span>Profile</span>
+                            </Link>
+                        </DropdownMenuItem>
                         {/* <DropdownMenuSeparator /> */}
                         {/* <DropdownMenuGroup>
               <DropdownMenuItem>
@@ -122,9 +130,12 @@ export function NavUser({ isNavbar }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator /> */}
-                        <DropdownMenuItem>
-                            <LogOut />
-                            Log out
+                        <DropdownMenuItem asChild>
+                            {/* Link Inertia yang merender dirinya sebagai item menu */}
+                            <Link href={route("logout")} method="post">
+                                <LogOut className="mr-2 h-4 w-4" />
+                                <span>Log out</span>
+                            </Link>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

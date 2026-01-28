@@ -1,7 +1,8 @@
 import Layout from "@/Components/Layout";
-import { Activity, icons } from "lucide-react";
+import { Activity, Users } from "lucide-react";
+import { ChartAreaInteractive } from "@/Components/ChartInteractive";
 const summaryData = [
-    { title: "Total Revenue", icon: Activity, value: "200000" },
+    { title: "Total Mahasiswa", icon: Users, value: "200000" },
     { title: "Total Revenue", icon: Activity, value: "200000" },
     { title: "Total Revenue", icon: Activity, value: "200000" },
     { title: "Total Revenue", icon: Activity, value: "200000" },
@@ -11,9 +12,6 @@ import SummaryCard from "@/Components/SummaryCard";
 export default function Page() {
     return (
         <Layout>
-            <div className="flex item-end justify-between mb-7">
-                <h1 className="3xl font-bold">Dashboard</h1>
-            </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {summaryData.map((item, key) => (
                     <SummaryCard
@@ -23,6 +21,9 @@ export default function Page() {
                         value={item.value}
                     />
                 ))}
+            </div>
+            <div className="pt-4">
+                <ChartAreaInteractive />
             </div>
         </Layout>
     );

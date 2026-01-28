@@ -9,7 +9,12 @@ const Layout = ({ children }) => {
             <AppSidebar />
             <SidebarInset>
                 <Navbar />
-                <main className="p-5">{children}</main>
+                <main className="p-5">
+                    <div className="flex item-end justify-between mb-7">
+                        <h1 className="font-bold text-xl">Dashboard</h1>
+                    </div>
+                    {children}
+                </main>
             </SidebarInset>
         </SidebarProvider>
     );

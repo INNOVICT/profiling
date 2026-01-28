@@ -9,7 +9,7 @@ const SummaryCard = ({ title, Icon, value }) => {
             </CardHeader>
             <CardContent>
                 <div>{value}</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground pt-2">
                     +20.1% from last month
                 </p>
             </CardContent>
