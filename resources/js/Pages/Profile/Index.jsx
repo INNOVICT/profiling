@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "@/Components/Layout";
+import Layout from "@/components/Layout";
 import {
     Card,
     CardContent,
@@ -7,13 +7,13 @@ import {
     CardTitle,
     CardDescription,
     CardFooter,
-} from "@/Components/ui/card";
+} from "@/components/ui/card";
 import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/Components/ui/chart";
-import { Avatar } from "@/Components/ui/avatar";
+} from "@/components/ui/chart";
+import { Avatar } from "@/components/ui/avatar";
 import { AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { TrendingUp } from "lucide-react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";

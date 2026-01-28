@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "@/Components/Layout";
+import Layout from "@/components/Layout";
 
-import TableUser from "@/Components/TableUser";
+import TableUser from "@/components/TableUser";
 const index = () => {
     return (
         <Layout>

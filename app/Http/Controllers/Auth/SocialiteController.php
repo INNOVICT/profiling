@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Laravel\Socialite\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use League\OAuth1\Client\Credentials\Credentials;
 
 class SocialiteController extends Controller
 {
@@ -35,5 +36,13 @@ class SocialiteController extends Controller
             Auth::login($newuser);
             return redirect()->route('dashboard');
         }
+    }
+    
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('home')->with("success", "Anda berhasil logout");
     }
 }

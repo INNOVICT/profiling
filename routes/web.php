@@ -16,7 +16,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get("/test", function () {
+Route::get("/home", function () {
     return Inertia::render('Home');
 });
 
@@ -25,6 +25,7 @@ Route::get("/test", function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/users', function () {
     return Inertia::render('Admin/Users/index');
 })->middleware(['auth', 'verified'])->name('usersdata');
@@ -50,5 +51,7 @@ Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProv
 
 Route::get("/auth/google/callback", [SocialiteController::class, 'handleProviderCallback'])
     ->name('auth.google.callback');
+    
+Route::post("/auth/logout", [SocialiteController::class, 'logout'])->name('auth.google.logout');
 
 require __DIR__ . '/auth.php';
