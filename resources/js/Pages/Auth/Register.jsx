@@ -1,7 +1,7 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
+import InputError from "@/components/InputError";
+import InputLabel from "@/components/InputLabel";
+import PrimaryButton from "@/components/PrimaryButton";
+import TextInput from "@/components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
@@ -12,10 +12,10 @@ const GoogleButton = ({ children, className = "", ...props }) => {
         <button
             {...props}
             className={`
-                flex w-full items-center justify-center space-x-2 
-                rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium 
-                shadow-sm transition-colors hover:bg-gray-50 
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 
+                flex w-full items-center justify-center space-x-2
+                rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium
+                shadow-sm transition-colors hover:bg-gray-50
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400
                 disabled:pointer-events-none disabled:opacity-50 text-gray-800
                 ${className}
             `}

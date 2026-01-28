@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import Layout from "@/Components/Layout";
 import { Activity, Users } from "lucide-react";
 import { ChartAreaInteractive } from "@/Components/ChartInteractive";
+=======
+import Layout from "@/components/Layout";
+import { Activity, icons } from "lucide-react";
+>>>>>>> f7446eb (change layout folder)
 const summaryData = [
     { title: "Total Mahasiswa", icon: Users, value: "200000" },
     { title: "Total Revenue", icon: Activity, value: "200000" },
@@ -8,7 +13,7 @@ const summaryData = [
     { title: "Total Revenue", icon: Activity, value: "200000" },
 ];
 
-import SummaryCard from "@/Components/SummaryCard";
+import SummaryCard from "@/components/SummaryCard";
 export default function Page() {
     return (
         <Layout>
