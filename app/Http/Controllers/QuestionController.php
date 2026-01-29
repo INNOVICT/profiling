@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Option;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class QuestionController extends Controller
 {
@@ -21,6 +24,7 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Test/AddQuestion/index');
     }
 
     /**
@@ -28,7 +32,34 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'question' => 'required|string',
+            'option' => 'required|array',
+        ]);
+
+        $LastNoSoal = Question::max('no_soal') ?? 0;
+        $noSoal = $LastNoSoal + 1;
+
+        $insertQuestion = Question::create([
+            'question_text' => $request->question,
+            'no_soal' => $noSoal,
+        ]);
+
+        $dataOption = [];
+
+        foreach($request->option as $option){
+            $dataOption = [
+                "question_id" => $insertQuestion->id,
+                "traits_id" => "1",
+                "option_text" => $option,
+                "created_at" => now(),
+                "updated_at" => now(),
+            ];
+        }
+
+        $insertOption = Option::insert($dataOption);
+
+        return to_route("question.create")->with("sucess", "Data Sucessfuly added");
     }
 
     /**

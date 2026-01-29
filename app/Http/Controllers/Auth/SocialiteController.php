@@ -28,6 +28,7 @@ class SocialiteController extends Controller
                 Auth::login($user);
                 $user->assignRole('user');
                 $user->status = 'active';
+                $user->save();
                 return redirect()->route('dashboard');
             } else {
                 $newuser = User::create([
@@ -50,6 +51,7 @@ class SocialiteController extends Controller
         $User = User::where(Auth::guard()->id());
 
         $User->status = 'inactive';
+        $User->save();
 
         Auth::logout();
         $request->session()->invalidate();

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,6 @@ Route::get("/home", function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/users', [UserController::class, 'AllUser'])->middleware(['auth', 'verified'])->name('usersdata');
 
 
 
@@ -42,6 +42,14 @@ Route::middleware('auth')->group(function () {
             'exampleProp' => 'Data dari Laravel',
         ]);
     })->name('profiles');
+
+    Route::get("/test", function(){
+        return Inertia::render("Test/index");
+    });
+
+    Route::resource("/question", QuestionController::class);
+    Route::get('/users', [UserController::class, 'AllUser'])->middleware(['auth', 'verified'])->name('usersdata');
+
 });
 
 Route::get("/auth/google/redirect", [SocialiteController::class, 'redirectToProvider'])

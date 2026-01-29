@@ -24,7 +24,7 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar";
 import { usePage } from "@inertiajs/react";
-import { LayoutDashboardIcon, User2Icon } from "lucide-react";
+import { LayoutDashboardIcon, User2Icon, NotebookText } from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -90,6 +90,21 @@ const data = {
                 // },
             ],
         },
+        {
+            title:"Question",
+            url: "#",
+            icon: NotebookText,
+            items: [
+                {
+                    title: "All Question",
+                    url: 'question.index'
+                },
+                {
+                    title: "Add Question",
+                    url: 'question.create'
+                }
+            ]
+        }
         // {
         //     title: "Role & Permision",
         //     url: "#",
