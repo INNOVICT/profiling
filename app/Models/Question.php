@@ -13,5 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     //
+    protected $table = 'question';
     protected $fillable = ['question_text', 'no_soal'];
+
+    public function options(){
+        return $this->hasMany(Option::class);
+    }
 }

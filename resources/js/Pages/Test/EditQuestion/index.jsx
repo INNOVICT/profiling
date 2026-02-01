@@ -13,16 +13,12 @@ import { Form, router, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 
-export default function AddQuestionPage(){
+export default function EditQuestionPage({editedData}){
     const [option, setOption] = useState([]);
-    const [form, setForm] = useState({
-        question:"",
-        option:""
-    })
     const [error, setError] = useState("");
 
     const {data, setData, post, processing, errors, reset} = useForm({
-        question: '',
+        question: editedData?.question_text || '',
         optionInput: '',
         option: []
     })
@@ -58,7 +54,7 @@ export default function AddQuestionPage(){
         formdata.append("option", option);
         formdata.append("question", form.question);
 
-        post(route("question.store"), {
+        post(route("question.update"), {
             onSuccess: () => {
                 toast.success("Data sucessfully added", {
                     position: "top-center",
@@ -78,8 +74,21 @@ export default function AddQuestionPage(){
     }
 
     useEffect(() => {
-        console.log(data);
-    }, [data])
+        console.log(editedData)
+    }, [editedData])
+
+    useEffect(() => {
+        if(editedData){
+            setData((prev) => ({...prev, question: editedData.question_text}));
+            editedData.options.map((item) => {
+                setData((prev) => ({...prev, option: [...prev.option, item.option_text]}));
+            })
+        }
+    }, [editedData])
+
+    useEffect(() => {
+        console.log(data)
+    })
 
     return(
         <Layout>
@@ -94,7 +103,7 @@ export default function AddQuestionPage(){
                         <h2 className="font-bold text-xl">Add New Question</h2>
                     </div>
                     <div className="mb-6">
-                        <FieldTextarea name='question' onInput={handleForm}></FieldTextarea>
+                        <FieldTextarea name='question' onInput={handleForm} value={data.question}></FieldTextarea>
                         {errors.question && <div>{error.question}</div>}
                     </div>
                     <div className="mb-6">

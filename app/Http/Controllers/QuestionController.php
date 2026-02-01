@@ -15,7 +15,13 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $data = Question::query()->with(['options' => function($query){
+            $query->select('id', 'question_id', 'option_text');
+        }])->get();
+
+        return Inertia::render('Test/AllQuestion/index', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -48,18 +54,19 @@ class QuestionController extends Controller
         $dataOption = [];
 
         foreach($request->option as $option){
-            $dataOption = [
+            $dataOption[] = [
                 "question_id" => $insertQuestion->id,
                 "traits_id" => "1",
                 "option_text" => $option,
                 "created_at" => now(),
                 "updated_at" => now(),
             ];
-        }
 
-        $insertOption = Option::insert($dataOption);
+            }
 
-        return to_route("question.create")->with("sucess", "Data Sucessfuly added");
+        Option::insert($dataOption);
+
+        return redirect()->route("question.create")->with("sucess", "Data Sucessfuly added");
     }
 
     /**
@@ -75,7 +82,11 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $data = Question::query()->with(['options' => function($query){
+            $query->select('id', 'question_id', 'option_text');
+        }])->where('id', $question->id)->first();
+
+        return Inertia::render('Test/EditQuestion/index', ['editedData' => $data]);
     }
 
     /**
@@ -91,6 +102,9 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $data = Question::find($question->id);
+        $data->delete();
+
+        return redirect()->route('question.index')->with('success', 'Data sucessfully deleted');
     }
 }

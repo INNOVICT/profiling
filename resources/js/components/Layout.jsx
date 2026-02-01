@@ -2,6 +2,7 @@ import React from "react";
 import { SidebarInset, SidebarProvider } from "./ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 import Navbar from "./Navbar";
+import { Toaster } from "./ui/sonner";
 
 const Layout = ({ children }) => {
     return (
@@ -14,6 +15,7 @@ const Layout = ({ children }) => {
                         <h1 className="font-bold text-xl">Dashboard</h1>
                     </div>
                     {children}
+                    <Toaster />
                 </main>
             </SidebarInset>
         </SidebarProvider>
