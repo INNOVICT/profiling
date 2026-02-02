@@ -14,8 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     //
+    protected $table = "option";
     protected $fillable = ["question_id", "option_text", "traits"];
-    
+
     public function questions()
     {
         return $this->belongsTo(Question::class);

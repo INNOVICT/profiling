@@ -40,6 +40,9 @@ return [
             'busy_timeout' => null,
             'journal_mode' => null,
             'synchronous' => null,
+            'options' => [
+                PDO::ATTR_TIMEOUT => 5, 
+            ],
         ],
 
         'mysql' => [
