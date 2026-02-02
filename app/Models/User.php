@@ -58,6 +58,7 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
+        'onboarded_at',
     ];
 
     /**
@@ -79,6 +80,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'onboarded_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

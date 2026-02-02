@@ -29,6 +29,9 @@ class SocialiteController extends Controller
                 $user->assignRole('user');
                 $user->status = 'active';
                 $user->save();
+                if (!$user->onboarded_at) {
+                    return redirect()->route('onboarding.index');
+                }
                 return redirect()->route('dashboard');
             } else {
                 $newuser = User::create([
@@ -39,7 +42,7 @@ class SocialiteController extends Controller
                 ]);
                 // $newuser->assignRole('user');
                 Auth::login($newuser);
-                return redirect()->route('dashboard');
+                return redirect()->route('onboarding.index');
             }
         }
         catch(\Exception $e){
