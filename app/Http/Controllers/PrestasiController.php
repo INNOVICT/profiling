@@ -10,12 +10,13 @@ class PrestasiController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    //  */
     public function index()
     {
         //
         return Inertia::render('Prestasi/Index', [
             'prestasi' => Prestasi::all(),
+
         ]);
     }
 
@@ -49,7 +50,7 @@ class PrestasiController extends Controller
     public function show(Prestasi $prestasi)
     {
         $prestasi = Prestasi::find($prestasi->id)->get();
-        
+
         return Inertia::render('Prestasi/Show', [
             'prestasi' => $prestasi,
         ]);
@@ -61,7 +62,7 @@ class PrestasiController extends Controller
     public function edit(Prestasi $prestasi)
     {
         $prestasi = Prestasi::find($prestasi->id)->get();
-        
+
         return Inertia::render('Prestasi/Edit', [
             'prestasi' => $prestasi,
         ]);
